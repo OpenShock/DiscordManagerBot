@@ -41,7 +41,7 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
       
       - name: Publish Manager Discord Bot
-        run: dotnet publish API/API.csproj -c Release -o ./publish/API
+        run: dotnet publish ManagerDiscordBot/ManagerDiscordBot.csproj -c Release -o ./publish/ManagerDiscordBot
       
       - name: Upload Manager Discord Bot artifacts
         uses: actions/upload-artifact@v4
