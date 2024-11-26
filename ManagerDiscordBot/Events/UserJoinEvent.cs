@@ -1,19 +1,18 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace OpenShock.ManagerDiscordBot.Events;
 
 public static class UserJoinEvent
 {
-    public const ulong WelcomeChannelId = 1224440439646457950;
-    
     public static async Task ClientOnUserJoined(SocketGuildUser userJoin)
     {
-        var general = userJoin.Guild.GetChannel(WelcomeChannelId) as SocketTextChannel;
+        var general = userJoin.Guild.GetChannel(Constants.WelcomeChannelId) as SocketTextChannel;
         if (general == null)
         {
-            OpenShockManagerBot.Logger.LogWarning("Could not find welcome channel");
+            Log.Warning("Could not find welcome channel");
             return;
         }
         
