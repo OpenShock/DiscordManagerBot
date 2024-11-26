@@ -61,9 +61,8 @@ builder.ConfigureServices(services =>
 try
 {
     var host = builder.Build();
-    var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Starting OpenShock Manager Discord Bot version {Version}",
-        Assembly.GetEntryAssembly()?.GetName().Version?.ToString());
+
+    Log.Information("Starting OpenShock Manager Discord Bot version {Version}", Assembly.GetEntryAssembly()?.GetName().Version?.ToString());
 
     // <---- Initialize Service stuff, this also instantiates the singletons!!! ---->
 
@@ -88,9 +87,13 @@ try
 
     host.Run();
 }
-catch (Exception e)
+catch (Exception ex)
 {
-    Console.WriteLine(e);
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
 }
 
 async Task ReadyAsync(BaseSocketClient client, InteractionService interactionService)
