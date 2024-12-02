@@ -39,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/manager-discord-bot
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/manager-discord-bot
           flavor: |
             latest=false
           tags: |
